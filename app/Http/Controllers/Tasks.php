@@ -25,7 +25,11 @@ class Tasks extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only(["task"]);
+
+        $task = Task::create($data);
+
+        return response($task, 201);
     }
 
     /**
