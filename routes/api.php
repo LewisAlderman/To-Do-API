@@ -6,4 +6,6 @@ $router->group(["prefix" => "tasks"], function($router) {
     $router->delete("{task}", "Tasks@destroy");
     $router->patch("{task}", "Tasks@update");
     $router->patch("{task}/complete", "Tasks@complete");
-})
+});
+
+?>
