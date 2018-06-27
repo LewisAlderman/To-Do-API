@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
 
 class Tasks extends Controller
 {
@@ -23,13 +25,13 @@ class Tasks extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         $data = $request->only(["task"]);
 
         $task = Task::create($data);
 
-        return response($task, 201);
+        return new TaskResource($task);
     }
 
     /**
