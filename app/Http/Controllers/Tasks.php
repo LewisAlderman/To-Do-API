@@ -16,7 +16,7 @@ class Tasks extends Controller
      */
     public function index()
     {
-        //
+        return Task::all();
     }
 
     /**
