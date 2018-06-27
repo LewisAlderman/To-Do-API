@@ -25,7 +25,6 @@ class TaskRequest extends FormRequest
     {
         return [
             "task" => ["required", 'string', 'max:100'],
-            
         ];
     }
 }

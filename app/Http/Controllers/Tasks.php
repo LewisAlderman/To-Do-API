@@ -16,7 +16,9 @@ class Tasks extends Controller
      */
     public function index()
     {
-        return Task::all();
+        $tasks = Task::all();
+        return TaskResource::collection($tasks);
+        
     }
 
     /**
@@ -57,7 +59,7 @@ class Tasks extends Controller
         $task = Task::find($id);
         $data = $request->only(['task']);
         $task->fill($data)->save();
-        return $task;
+        return new TaskResource($task);
     }
 
     /**
@@ -71,5 +73,14 @@ class Tasks extends Controller
         $task = Task::find($id);
         $task->delete();
         return response(null, 204);
+    }
+
+    public function complete($id)
+    {
+        $task = Task::find($id);
+        // $task->fill(["completed" => 1])->save();
+        $task->completed = true;
+        $task->update();
+        return new TaskResource($task);
     }
 }
